@@ -22,6 +22,9 @@ import { HeaderComponent } from './Shared/Components/header/header.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
 
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
   bootstrap: [AppComponent],
@@ -33,6 +36,8 @@ import { UserModule } from './User/user.module';
     UserModule,
     CategoryModule,
     PostModule,
+    MatButton,
+    MatIcon,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,

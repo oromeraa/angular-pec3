@@ -13,7 +13,10 @@ export class HeaderComponent implements OnInit {
   showAuthSection: boolean;
   showNoAuthSection: boolean;
 
-  constructor(private router: Router, private store: Store<AppState>) {
+  constructor(
+    private router: Router,
+    private store: Store<AppState>,
+  ) {
     this.showAuthSection = false;
     this.showNoAuthSection = true;
   }

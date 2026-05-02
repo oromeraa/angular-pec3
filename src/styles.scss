@@ -3,14 +3,19 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
+html {
   height: 100%;
 }
 body {
+  height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  // background-color: darkslategray;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 // Contenedor centrado para formularios de login/register
