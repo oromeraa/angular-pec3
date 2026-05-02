@@ -17,13 +17,3 @@ app-root {
   flex-direction: column;
   height: 100%;
 }
-
-// Contenedor centrado para formularios de login/register
-.container-login {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 30px;
-  width: 800px;
-}
