@@ -1,0 +1,103 @@
+<div style="margin-left: auto; margin-right: auto">
+  <p id="profileFeedback"></p>
+</div>
+
+<div>
+  <h1>Profile</h1>
+
+  <form [formGroup]="profileForm" (ngSubmit)="updateUser()">
+    <!-- Name -->
+    <div>
+      <label for="name">Name: </label>
+      <input id="name" type="text" formControlName="name" />
+      <div *ngIf="name.invalid && isValidForm === false" class="error">
+        <div *ngIf="name.errors?.['required']">Name is required</div>
+        <div *ngIf="name.errors?.['minlength']">
+          Name must be at least 5 characters long.
+        </div>
+        <div *ngIf="name.errors?.['maxlength']">
+          Name can be max 25 characters long.
+        </div>
+      </div>
+    </div>
+
+    <!-- Surname1 -->
+    <div>
+      <label for="surname1">Surname1: </label>
+      <input id="surname1" type="text" formControlName="surname_1" />
+      <div *ngIf="surname_1.invalid && isValidForm === false" class="error">
+        <div *ngIf="surname_1.errors?.['required']">Surname1 is required</div>
+        <div *ngIf="surname_1.errors?.['minlength']">
+          Surname1 must be at least 5 characters long.
+        </div>
+        <div *ngIf="surname_1.errors?.['maxlength']">
+          Surname1 can be max 25 characters long.
+        </div>
+      </div>
+    </div>
+
+    <!-- Surname2 -->
+    <div>
+      <label for="surname2">Surname2: </label>
+      <input id="surname2" type="text" formControlName="surname_2" />
+      <div *ngIf="surname_2.invalid && isValidForm === false" class="error">
+        <div *ngIf="surname_2.errors?.['minlength']">
+          Surname2 must be at least 5 characters long.
+        </div>
+        <div *ngIf="surname_2.errors?.['maxlength']">
+          Surname2 can be max 25 characters long.
+        </div>
+      </div>
+    </div>
+
+    <!-- Alias -->
+    <div>
+      <label for="alias">Alias: </label>
+      <input id="alias" type="text" formControlName="alias" />
+      <div *ngIf="alias.invalid && isValidForm === false" class="error">
+        <div *ngIf="alias.errors?.['required']">Alias is required</div>
+        <div *ngIf="alias.errors?.['minlength']">
+          Alias must be at least 5 characters long.
+        </div>
+        <div *ngIf="alias.errors?.['maxlength']">
+          Alias can be max 25 characters long.
+        </div>
+      </div>
+    </div>
+
+    <!-- Birth date -->
+    <div>
+      <label for="birthDate">Birth date: </label>
+      <input id="birthDate" type="date" formControlName="birth_date" />
+      <div *ngIf="birth_date.invalid && isValidForm === false" class="error">
+        <div *ngIf="birth_date.errors?.['required']">
+          Birth date is required
+        </div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div>
+      <label for="email">Email: </label>
+      <input id="email" type="email" formControlName="email" />
+      <div *ngIf="email.invalid && isValidForm === false" class="error">
+        <div *ngIf="email.errors?.['required']">Email is required</div>
+        <div *ngIf="email.errors?.['email']">Email not a valid format.</div>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div>
+      <label for="password">Password: </label>
+      <input id="password" type="password" formControlName="password" />
+      <div *ngIf="password.invalid && isValidForm === false" class="error">
+        <div *ngIf="password.errors?.['required']">Password is required</div>
+        <div *ngIf="password.errors?.['minlength']">
+          Password must be at least 8 characters long.
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Update User</button>
+  </form>
+</div>
