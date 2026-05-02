@@ -35,17 +35,18 @@
       <mat-icon>home</mat-icon>Home
     </button>
     <button mat-flat-button matFab extended (click)="adminPosts()">
-      <mat-icon>post</mat-icon>Admin posts
+      <mat-icon>article</mat-icon>
+      Posts
     </button>
     <button mat-flat-button matFab extended (click)="adminCategories()">
-      <mat-icon>category</mat-icon>Admin categories
+      <mat-icon>category</mat-icon>Categories
     </button>
   </div>
   <div class="flex flex-wrap gap-4">
     <button mat-flat-button matFab extended (click)="profile()">
       <mat-icon>person</mat-icon>Profile
     </button>
-    <button mat-flat-button matFab extended (click)="logout()">
+    <button mat-flat-button matFab extended color="warn" (click)="logout()">
       <mat-icon>logout</mat-icon>Logout
     </button>
   </div>
