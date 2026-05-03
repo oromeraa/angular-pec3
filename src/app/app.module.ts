@@ -19,16 +19,23 @@ import { CategoryModule } from './Category/category.module';
 import { PostModule } from './Post/post.module';
 import { FooterComponent } from './Shared/Components/footer/footer.component';
 import { HeaderComponent } from './Shared/Components/header/header.component';
+import { SpinnerComponent } from './Shared/Components/spinner/spinner.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbar } from '@angular/material/toolbar';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+  ],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,
@@ -41,6 +48,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
     MatButton,
     MatIcon,
     MatToolbar,
+    MatProgressSpinnerModule,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,
