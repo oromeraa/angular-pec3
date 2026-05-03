@@ -19,6 +19,7 @@ import { MatTableModule } from '@angular/material/table';
 import { BaseChartDirective } from 'ng2-charts';
 import { PostCardComponent } from '../Shared/Components/post-card/post-card.component';
 import { FormatDatePipe } from '../Shared/Pipes/format-date.pipe';
+import { SharedModule } from '../Shared/shared.module';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { PostFormComponent } from './components/post-form/post-form.component';
@@ -57,6 +58,7 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     MatSelectModule,
     BaseChartDirective,
     MatChipsModule,
+    SharedModule,
   ],
   providers: [provideNativeDateAdapter()],
 })

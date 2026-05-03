@@ -24,113 +24,50 @@
           </div>
 
           <div class="flex flex-col space-y-4 p-4 md:mt-12">
-            <!-- Name -->
-            <mat-form-field class="w-full">
-              <mat-label>Name</mat-label>
-              <input
-                type="text"
-                matInput
-                formControlName="name"
-                placeholder="Ex: John"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(name)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-text
+              label="Name"
+              [control]="name"
+              placeholder="Ex: John"
+            ></app-input-text>
 
-            <!-- surname -->
-            <mat-form-field class="w-full">
-              <mat-label>First Surname</mat-label>
-              <input
-                type="text"
-                matInput
-                formControlName="surname_1"
-                placeholder="Ex: Doe"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(surname_1)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-text
+              label="First Surname"
+              [control]="surname_1"
+              placeholder="Ex: Doe"
+            ></app-input-text>
 
-            <!-- surname2 -->
-            <mat-form-field class="w-full">
-              <mat-label>Second Surname</mat-label>
-              <input
-                type="text"
-                matInput
-                formControlName="surname_2"
-                placeholder="Ex: Smith"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(surname_2)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-text
+              label="Second Surname"
+              [control]="surname_2"
+              placeholder="Ex: Smith"
+            ></app-input-text>
 
-            <!-- alias -->
-            <mat-form-field class="w-full">
-              <mat-label>Alias</mat-label>
-              <input
-                type="text"
-                matInput
-                formControlName="alias"
-                placeholder="Ex: user_alias"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(alias)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-text
+              label="Alias"
+              [control]="alias"
+              placeholder="Ex: user_alias"
+            ></app-input-text>
 
-            <!-- birth_date -->
-            <mat-form-field class="w-full">
-              <mat-label>Choose a date</mat-label>
-              <input
-                matInput
-                [matDatepicker]="picker"
-                formControlName="birth_date"
-              />
-              <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="picker"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #picker></mat-datepicker>
-              <mat-error class="text-error">{{
-                getErrorMessage(birth_date)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-date
+              label="Choose a date"
+              [control]="birth_date"
+              placeholder="MM/DD/YYYY"
+            ></app-input-date>
 
-            <!-- email -->
-            <mat-form-field class="w-full">
-              <mat-label>Email</mat-label>
-              <input
-                type="email"
-                matInput
-                formControlName="email"
-                placeholder="Ex: user@uoc.com"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(email)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-email
+              label="Email"
+              [control]="email"
+              placeholder="Ex: user@uoc.com"
+            ></app-input-email>
 
-            <!-- password -->
-            <mat-form-field class="w-full">
-              <mat-label>Password</mat-label>
-              <input
-                type="password"
-                matInput
-                formControlName="password"
-                placeholder="Ex: ********"
-              />
-              <mat-error class="text-error">{{
-                getErrorMessage(password)
-              }}</mat-error>
-            </mat-form-field>
+            <app-input-password
+              label="Password"
+              [control]="password"
+            ></app-input-password>
           </div>
         </div>
       </mat-card-content>
 
-      <!-- Buttons -->
       <mat-card-actions align="end" class="gap-4">
         <button mat-button (click)="toHomePage()">Cancel</button>
         <button mat-flat-button type="submit">Register</button>

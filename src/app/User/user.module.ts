@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SharedModule } from '../Shared/shared.module';
 
 import { A11yModule } from '@angular/cdk/a11y';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,6 +35,7 @@ import { MatInputModule } from '@angular/material/input';
     MatError,
     MatDatepickerModule,
     A11yModule,
+    SharedModule,
   ],
   providers: [provideNativeDateAdapter()],
 })

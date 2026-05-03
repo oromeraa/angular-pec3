@@ -1,0 +1,13 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    type="email"
+    [formControl]="control"
+    [placeholder]="placeholder"
+    autocomplete="email"
+  />
+  <mat-error *ngIf="showError">
+    {{ errorMessage || 'Correo electrónico no válido' }}
+  </mat-error>
+</mat-form-field>

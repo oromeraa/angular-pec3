@@ -1,0 +1,14 @@
+<mat-form-field class="w-full">
+  <mat-label>{{ label }}</mat-label>
+  <input
+    matInput
+    [matDatepicker]="picker"
+    [formControl]="control"
+    [placeholder]="placeholder"
+  />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+  <mat-error *ngIf="control.invalid && (control.dirty || control.touched)">
+    {{ errorMessage || "Fecha no válida" }}
+  </mat-error>
+</mat-form-field>

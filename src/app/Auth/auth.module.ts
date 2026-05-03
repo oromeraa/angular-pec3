@@ -13,6 +13,7 @@ import {
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { SharedModule } from '../Shared/shared.module';
 
 @NgModule({
   declarations: [LoginComponent],
@@ -28,6 +29,7 @@ import { MatInputModule } from '@angular/material/input';
     MatCardActions,
     MatCardTitle,
     MatError,
+    SharedModule,
   ],
 })
 export class AuthModule {}

@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { CategoriesListComponent } from './components/categories-list/categories-list.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { SharedModule } from '../Shared/shared.module';
 
 @NgModule({
   declarations: [CategoriesListComponent, CategoryFormComponent],
@@ -27,6 +28,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     MatCardModule,
     MatCardContent,
     MatCardActions,
+    SharedModule,
   ],
 })
 export class CategoryModule {}
