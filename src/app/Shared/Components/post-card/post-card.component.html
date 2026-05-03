@@ -1,17 +1,17 @@
 <mat-card class="h-full flex flex-col">
   <mat-card-header>
-    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-title>{{ item.title }}</mat-card-title>
     <mat-card-subtitle>
-      <span>{{ post.userAlias }}</span>
+      <span>{{ item.userAlias }}</span>
       ·
-      <span>{{ post.publication_date | formatDate: 3 }}</span>
+      <span>{{ item.publication_date | formatDate: 3 }}</span>
     </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content class="flex-1 gap-3">
-    <mat-chip-set class="mt-2" *ngIf="post.categories">
+    <mat-chip-set class="mt-2" *ngIf="item.categories">
       <mat-chip
-        *ngFor="let category of post.categories"
+        *ngFor="let category of item.categories"
         [ngStyle]="{ 'background-color': category.css_color }"
         class="!text-white !text-xs"
       >
@@ -19,7 +19,7 @@
       </mat-chip>
     </mat-chip-set>
     <p class="text-sm text-gray-500">
-      {{ post.description }}
+      {{ item.description }}
     </p>
   </mat-card-content>
 
@@ -32,7 +32,7 @@
         class="w-full"
       >
         <mat-icon>thumb_up</mat-icon>
-        {{ post.num_likes }}
+        {{ item.num_likes }}
       </button>
       <button
         mat-button
@@ -42,7 +42,7 @@
         class="w-full"
       >
         <mat-icon>thumb_down</mat-icon>
-        {{ post.num_dislikes }}
+        {{ item.num_dislikes }}
       </button>
     </ng-container>
   </mat-card-actions>

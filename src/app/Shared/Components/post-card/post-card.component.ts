@@ -7,17 +7,17 @@ import { PostDTO } from 'src/app/Post/models/post.dto';
   styleUrls: ['./post-card.component.scss'],
 })
 export class PostCardComponent {
-  @Input() post!: PostDTO;
+  @Input() item!: PostDTO;
   @Input() showButtons: boolean = false;
 
   @Output() like = new EventEmitter<string>();
   @Output() dislike = new EventEmitter<string>();
 
   onLike(): void {
-    this.like.emit(this.post.postId);
+    this.like.emit(this.item.postId);
   }
 
   onDislike(): void {
-    this.dislike.emit(this.post.postId);
+    this.dislike.emit(this.item.postId);
   }
 }
