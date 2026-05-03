@@ -70,8 +70,7 @@
 
             <mat-form-field class="w-full">
               <mat-label>Choose categories</mat-label>
-              <mat-select>
-                <mat-option>Category</mat-option>
+              <mat-select formControlName="categories" multiple>
                 @for (category of categoriesList; track category) {
                   <mat-option [value]="category.categoryId">{{
                     category.title
