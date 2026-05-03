@@ -1,0 +1,18 @@
+<div
+  *ngIf="notification() as msg"
+  class="fixed top-20 right-6 z-50 bg-slate-400 px-4 py-2 gap-4 rounded shadow flex items-center text-white"
+>
+  <mat-icon>
+    {{
+      msg.type === "success"
+        ? "check_circle"
+        : msg.type === "error"
+          ? "error"
+          : "info"
+    }}
+  </mat-icon>
+  <span class="text-sm">{{ msg.message }}</span>
+  <button mat-icon-button (click)="dismiss()" class="!text-white">
+    <mat-icon>close</mat-icon>
+  </button>
+</div>

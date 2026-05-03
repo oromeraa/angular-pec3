@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, exhaustMap, finalize, map, tap } from 'rxjs/operators';
+import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
+import { NotificationService } from 'src/app/Shared/Services/notification.service';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
 import * as AuthActions from '../actions';
 import { AuthDTO } from '../models/auth.dto';
@@ -10,14 +11,12 @@ import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthEffects {
-  private responseOK: boolean = false;
-  private errorResponse: any = null;
-
   constructor(
     private actions$: Actions,
     private authService: AuthService,
     private router: Router,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private notificationService: NotificationService
   ) {}
 
   login$ = createEffect(() =>
@@ -32,23 +31,11 @@ export class AuthEffects {
               user_id: userToken.user_id,
               access_token: userToken.access_token,
             };
-
             return AuthActions.loginSuccess({ credentials: credentialsTemp });
           }),
           catchError((error) =>
             of(AuthActions.loginFailure({ payload: error }))
-          ),
-          finalize(async () => {
-            await this.sharedService.managementToast(
-              'loginFeedback',
-              this.responseOK,
-              this.errorResponse
-            );
-
-            if (this.responseOK) {
-              this.router.navigateByUrl('home');
-            }
-          })
+          )
         )
       )
     )
@@ -59,8 +46,8 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         tap(() => {
-          this.responseOK = true;
-          this.errorResponse = null;
+          this.notificationService.showInfo('Sesión iniciada correctamente');
+          this.router.navigateByUrl('home');
         })
       ),
     { dispatch: false }
@@ -71,9 +58,8 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginFailure),
         tap(({ payload }) => {
-          this.responseOK = false;
-          this.errorResponse = payload.error;
           this.sharedService.errorLog(payload.error);
+          this.notificationService.showError(payload.error?.message || 'Error al iniciar sesión');
         })
       ),
     { dispatch: false }

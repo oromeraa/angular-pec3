@@ -20,6 +20,7 @@ import { PostModule } from './Post/post.module';
 import { FooterComponent } from './Shared/Components/footer/footer.component';
 import { HeaderComponent } from './Shared/Components/header/header.component';
 import { SpinnerComponent } from './Shared/Components/spinner/spinner.component';
+import { ToastComponent } from './Shared/Components/toast/toast.component';
 import { AuthInterceptorService } from './Shared/Services/auth-interceptor.service';
 import { UserModule } from './User/user.module';
 
@@ -35,6 +36,7 @@ import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
     HeaderComponent,
     FooterComponent,
     SpinnerComponent,
+    ToastComponent,
   ],
   bootstrap: [AppComponent],
   imports: [
