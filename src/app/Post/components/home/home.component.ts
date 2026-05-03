@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { animate, query, stagger, style, transition, trigger } from '@angular/animations';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/app.reducers';
 import { SharedService } from 'src/app/Shared/Services/shared.service';
@@ -11,28 +12,34 @@ import { PostService } from '../../services/post.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  animations: [
+    trigger('listAnimation', [
+      transition('* => *', [
+        query(':enter', [
+          style({ opacity: 0, transform: 'translateY(30px)' }),
+          stagger(150, [
+            animate('500ms ease-out', style({ opacity: 1, transform: 'translateY(0)' }))
+          ])
+        ], { optional: true })
+      ])
+    ])
+  ],
 })
 export class HomeComponent {
   posts: PostDTO[];
   showButtons: boolean;
-
-  private userId: string;
 
   constructor(
     private postService: PostService,
     private sharedService: SharedService,
     private store: Store<AppState>
   ) {
-    this.userId = '';
     this.posts = new Array<PostDTO>();
     this.showButtons = false;
 
     this.store.select('auth').subscribe((auth) => {
       this.showButtons = false;
 
-      if (auth.credentials.user_id) {
-        this.userId = auth.credentials.user_id;
-      }
       if (auth.credentials.access_token) {
         this.showButtons = true;
       }
