@@ -1,26 +1,116 @@
-<h2>Categories List</h2>
-<button (click)="createCategory()">ADD</button>
+<div class="max-w-4xl mx-auto">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <div class="w-full md:max-w-7xl mx-auto p-4 md:p-6">
+        <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+          <div class="flex flex-col gap-2">
+            <h6 class="text-headline-small font-headline-small">
+              Category List
+            </h6>
+            <p class="text-body-medium font-body-medium">
+              A list of all the categories in your account including their id,
+              title, description and color.
+            </p>
+          </div>
+          <div class="flex md:justify-end">
+            <button mat-flat-button (click)="createCategory()">
+              Add category
+            </button>
+          </div>
+        </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>TITLE</th>
-      <th>DESCRIPTION</th>
-      <th>CSS COLOR</th>
-      <th>ACTIONS</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let category of categories">
-      <td>{{ category.categoryId }}</td>
-      <td>{{ category.title }}</td>
-      <td>{{ category.description }}</td>
-      <td>{{ category.css_color }}</td>
-      <td>
-        <button (click)="updateCategory(category.categoryId)">UPDATE</button>
-        <button (click)="deleteCategory(category.categoryId)">DELETE</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+        <table mat-table [dataSource]="categories" class="mt-6">
+          <!-- Id Column -->
+          <ng-container matColumnDef="categoryId">
+            <th mat-header-cell *matHeaderCellDef>Category ID</th>
+            <td mat-cell *matCellDef="let element" class="font-medium">
+              {{ element.categoryId }}
+            </td>
+          </ng-container>
+
+          <!-- Title Column -->
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td
+              mat-cell
+              *matCellDef="let element"
+              class="text-gray-500 dark:text-gray-400"
+            >
+              {{ element.title }}
+            </td>
+          </ng-container>
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef>Description</th>
+            <td
+              mat-cell
+              *matCellDef="let element"
+              class="text-gray-500 dark:text-gray-400"
+            >
+              {{ element.description }}
+            </td>
+          </ng-container>
+
+          <!-- CSS Color Column -->
+          <ng-container matColumnDef="css_color">
+            <th mat-header-cell *matHeaderCellDef>CSS Color</th>
+            <td
+              mat-cell
+              *matCellDef="let element"
+              class="text-gray-500 dark:text-gray-400"
+            >
+              {{ element.css_color }}
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element">
+              <div class="flex items-center gap-4">
+                <button
+                  matButton="text"
+                  (click)="updateCategory(element.categoryId)"
+                >
+                  Update
+                </button>
+                <button
+                  matButton="text"
+                  class="!text-red-400"
+                  (click)="deleteCategory(element.categoryId)"
+                >
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
+            </td>
+          </ng-container>
+
+          <tr
+            mat-header-row
+            *matHeaderRowDef="[
+              'categoryId',
+              'title',
+              'description',
+              'css_color',
+              'actions',
+            ]"
+          ></tr>
+          <tr
+            mat-row
+            *matRowDef="
+              let row;
+              columns: [
+                'categoryId',
+                'title',
+                'description',
+                'css_color',
+                'actions',
+              ]
+            "
+          ></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
