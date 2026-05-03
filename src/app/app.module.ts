@@ -24,6 +24,7 @@ import { UserModule } from './User/user.module';
 
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -38,6 +39,7 @@ import { MatIcon } from '@angular/material/icon';
     PostModule,
     MatButton,
     MatIcon,
+    MatToolbar,
     StoreModule.forRoot(appReducers, {
       runtimeChecks: {
         strictStateImmutability: false,

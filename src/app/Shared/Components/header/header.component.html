@@ -1,53 +1,59 @@
-<!-- NO AUTH REQUIRED -->
-<div
-  class="flex flex-wrap justify-between items-center w-10/12 mx-auto"
-  *ngIf="showNoAuthSection"
->
-  <div class="flex flex-wrap gap-4">
-    <button mat-flat-button matFab extended (click)="dashboard()">
-      <mat-icon>view_quilt</mat-icon>Dashboard
-    </button>
-    <button mat-flat-button matFab extended (click)="home()">
-      <mat-icon>home</mat-icon>Home
-    </button>
-  </div>
-  <div class="flex flex-wrap gap-4">
-    <button mat-flat-button matFab extended (click)="register()">
-      <mat-icon>group_add</mat-icon>Register
-    </button>
-    <button mat-flat-button matFab extended (click)="login()">
-      <mat-icon>login</mat-icon>Login
-    </button>
-  </div>
-</div>
+<mat-toolbar class="!bg-slate-600 !flex !py-4 !w-full !px-32">
+  <button
+    matIconButton
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+    (click)="home()"
+  >
+    <span>Blog UOC Project Front</span>
+  </button>
+  <span class="example-spacer"></span>
 
-<!-- AUTH REQUIRED -->
-<div
-  class="flex flex-wrap justify-between items-center w-10/12 mx-auto"
-  *ngIf="showAuthSection"
->
-  <div class="flex flex-wrap gap-4">
-    <button mat-flat-button matFab extended (click)="dashboard()">
-      <mat-icon>view_quilt</mat-icon>
-      Dashboard
-    </button>
-    <button mat-flat-button matFab extended (click)="home()">
-      <mat-icon>home</mat-icon>Home
-    </button>
-    <button mat-flat-button matFab extended (click)="adminPosts()">
-      <mat-icon>article</mat-icon>
-      Posts
-    </button>
-    <button mat-flat-button matFab extended (click)="adminCategories()">
-      <mat-icon>category</mat-icon>Categories
-    </button>
+  <!-- NO AUTH REQUIRED -->
+  <div
+    class="flex flex-wrap justify-between items-center w-10/12 mx-auto"
+    *ngIf="showNoAuthSection"
+  >
+    <div class="flex flex-wrap gap-4">
+      <button mat-flat-button matFab extended (click)="dashboard()">
+        <mat-icon>view_quilt</mat-icon>Dashboard
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <button mat-flat-button matFab extended (click)="register()">
+        <mat-icon>group_add</mat-icon>Register
+      </button>
+      <button mat-flat-button matFab extended (click)="login()">
+        <mat-icon>login</mat-icon>Login
+      </button>
+    </div>
   </div>
-  <div class="flex flex-wrap gap-4">
-    <button mat-flat-button matFab extended (click)="profile()">
-      <mat-icon>person</mat-icon>Profile
-    </button>
-    <button mat-flat-button matFab extended color="warn" (click)="logout()">
-      <mat-icon>logout</mat-icon>Logout
-    </button>
+
+  <!-- AUTH REQUIRED -->
+  <div
+    class="flex flex-wrap justify-between items-center w-10/12 mx-auto"
+    *ngIf="showAuthSection"
+  >
+    <div class="flex flex-wrap gap-4">
+      <button mat-flat-button matFab extended (click)="dashboard()">
+        <mat-icon>view_quilt</mat-icon>
+        Dashboard
+      </button>
+      <button mat-flat-button matFab extended (click)="adminPosts()">
+        <mat-icon>article</mat-icon>
+        Posts
+      </button>
+      <button mat-flat-button matFab extended (click)="adminCategories()">
+        <mat-icon>category</mat-icon>Categories
+      </button>
+    </div>
+    <div class="flex flex-wrap gap-4">
+      <button mat-flat-button matFab extended (click)="profile()">
+        <mat-icon>person</mat-icon>Profile
+      </button>
+      <button mat-flat-button matFab extended color="warn" (click)="logout()">
+        <mat-icon>logout</mat-icon>Logout
+      </button>
+    </div>
   </div>
-</div>
+</mat-toolbar>
