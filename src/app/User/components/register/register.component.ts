@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -11,10 +11,13 @@ import { AppState } from 'src/app/app.reducers';
 import * as UserAction from '../../actions';
 import { UserDTO } from '../../models/user.dto';
 
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent {
   registerUser: UserDTO;
@@ -32,7 +35,8 @@ export class RegisterComponent {
 
   constructor(
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router,
   ) {
     this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
 
@@ -63,7 +67,7 @@ export class RegisterComponent {
 
     this.birth_date = new FormControl(
       formatDate(this.registerUser.birth_date, 'yyyy-MM-dd', 'en'),
-      [Validators.required]
+      [Validators.required],
     );
 
     this.email = new FormControl(this.registerUser.email, [
@@ -109,5 +113,106 @@ export class RegisterComponent {
     };
 
     this.store.dispatch(UserAction.register({ user }));
+  }
+
+  toHomePage(): void {
+    this.router.navigateByUrl('home');
+  }
+
+  getErrorMessage(control: FormControl): string {
+    switch (control) {
+      case this.name:
+        return this.getNameErrorMessage();
+      case this.surname_1:
+        return this.getSurnameErrorMessage();
+      case this.surname_2:
+        return this.getSurname2ErrorMessage();
+      case this.alias:
+        return this.getAliasErrorMessage();
+      case this.birth_date:
+        return this.getBirthDateErrorMessage();
+      case this.email:
+        return this.getEmailErrorMessage();
+      case this.password:
+        return this.getPasswordErrorMessage();
+      default:
+        return '';
+    }
+  }
+
+  getNameErrorMessage(): string {
+    if (this.name.hasError('required')) {
+      return 'Name is required';
+    }
+    if (this.name.hasError('minlength')) {
+      return 'Name must be greater than 5 characters';
+    }
+    if (this.name.hasError('maxlength')) {
+      return 'Name can be max 25 characters long';
+    }
+    return '';
+  }
+
+  getSurnameErrorMessage(): string {
+    if (this.surname_1.hasError('required')) {
+      return 'First surname is required';
+    }
+    if (this.surname_1.hasError('minlength')) {
+      return 'First surname must be greater than 5 characters';
+    }
+    if (this.surname_1.hasError('maxlength')) {
+      return 'First surname can be max 25 characters long';
+    }
+    return '';
+  }
+
+  getSurname2ErrorMessage(): string {
+    if (this.surname_2.hasError('minlength')) {
+      return 'Second surname must be greater than 5 characters';
+    }
+    if (this.surname_2.hasError('maxlength')) {
+      return 'Second surname can be max 25 characters long';
+    }
+    return '';
+  }
+
+  getAliasErrorMessage(): string {
+    if (this.alias.hasError('required')) {
+      return 'Alias is required';
+    }
+    if (this.alias.hasError('minlength')) {
+      return 'Alias must be greater than 5 characters';
+    }
+    if (this.alias.hasError('maxlength')) {
+      return 'Alias can be max 25 characters long';
+    }
+    return '';
+  }
+
+  getBirthDateErrorMessage(): string {
+    if (this.birth_date.hasError('required')) {
+      return 'Birth date is required';
+    }
+    return '';
+  }
+
+  getEmailErrorMessage(): string {
+    if (this.email.hasError('required')) {
+      return 'Email is required';
+    }
+    if (this.email.hasError('email')) {
+      return 'Not a valid email';
+    }
+    return '';
+  }
+
+  getPasswordErrorMessage(): string {
+    if (this.password.hasError('required')) {
+      return 'Password is required';
+    }
+    if (this.password.hasError('minlength')) {
+      return 'Password must be greater than 8 characters';
+    }
+    return '';
   }
 }

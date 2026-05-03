@@ -58,7 +58,7 @@ export class LoginComponent {
     this.store.dispatch(AuthAction.login({ credentials }));
   }
 
-  register(): void {
+  toRegisterPage(): void {
     this.router.navigateByUrl('register');
   }
 
