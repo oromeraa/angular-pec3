@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.reducers';
 
@@ -7,42 +7,40 @@ import { AppState } from './app.reducers';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'blog-uoc-project-front';
-  isLoading: boolean = false;
+
+  loadingAuth: boolean = false;
+  loadingPosts: boolean = false;
+  loadingUser: boolean = false;
+  loadingCategories: boolean = false;
+
+  isLoading(): boolean {
+    return (
+      this.loadingAuth ||
+      this.loadingPosts ||
+      this.loadingUser ||
+      this.loadingCategories
+    );
+  }
 
   constructor(private store: Store<AppState>) {}
+
   ngOnInit() {
     this.store.select('auth').subscribe((auth) => {
-      if (auth.loading) {
-        this.isLoading = true;
-      } else {
-        this.isLoading = false;
-      }
+      this.loadingAuth = auth.loading;
     });
 
     this.store.select('posts').subscribe((posts) => {
-      if (posts.loading) {
-        this.isLoading = true;
-      } else {
-        this.isLoading = false;
-      }
+      this.loadingPosts = posts.loading;
     });
 
     this.store.select('user').subscribe((user) => {
-      if (user.loading) {
-        this.isLoading = true;
-      } else {
-        this.isLoading = false;
-      }
+      this.loadingUser = user.loading;
     });
 
-    this.store.select('categories').subscribe((category) => {
-      if (category.loading) {
-        this.isLoading = true;
-      } else {
-        this.isLoading = false;
-      }
+    this.store.select('categories').subscribe((categories) => {
+      this.loadingCategories = categories.loading;
     });
   }
 }

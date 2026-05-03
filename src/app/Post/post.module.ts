@@ -8,6 +8,7 @@ import {
   MatCardModule,
   MatCardTitle,
 } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatError, MatFormFieldModule } from '@angular/material/form-field';
@@ -53,6 +54,7 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     MatDatepickerModule,
     MatSelectModule,
     BaseChartDirective,
+    MatChipsModule,
   ],
   providers: [provideNativeDateAdapter()],
 })
