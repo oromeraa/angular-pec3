@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 
+import { A11yModule } from '@angular/cdk/a11y';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MatCardActions,
@@ -32,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatCardActions,
     MatError,
     MatDatepickerModule,
+    A11yModule,
   ],
   providers: [provideNativeDateAdapter()],
 })
