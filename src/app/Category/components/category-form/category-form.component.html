@@ -2,51 +2,73 @@
   <p id="categoryFeedback"></p>
 </div>
 
-<div>
-  <h1>Category form</h1>
+<div class="max-w-4xl mx-auto">
+  <form
+    [formGroup]="categoryForm"
+    (ngSubmit)="saveCategory()"
+    class="p-4 w-full max-w-7xl mx-auto"
+  >
+    <mat-card appearance="outlined">
+      <mat-card-content>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="flex flex-col space-y-4 p-4">
+            <img
+              src="https://ui.angular-material.dev/app-ui/logo.svg"
+              alt="Logo"
+              height="48"
+              width="48"
+              class="inline"
+            />
+            <h1 class="text-3xl text-white">Add Category</h1>
+            <!-- <p class="text-white">to continue to Application</p> -->
+          </div>
 
-  <form [formGroup]="categoryForm" (ngSubmit)="saveCategory()">
-    <!-- Title -->
-    <div>
-      <label for="title">Title:</label>
-      <input id="title" type="text" formControlName="title" />
+          <div class="flex flex-col space-y-4 p-4 md:mt-12">
+            <mat-form-field class="w-full">
+              <mat-label>Title</mat-label>
+              <input
+                type="text"
+                matInput
+                formControlName="title"
+                placeholder="Enter category title"
+              />
+              <mat-error class="text-error">{{
+                getErrorMessage(title)
+              }}</mat-error>
+            </mat-form-field>
 
-      <div *ngIf="title.invalid && isValidForm === false" class="error">
-        <div *ngIf="title.errors?.['required']">Title is required</div>
-        <div *ngIf="title.errors?.['maxlength']">
-          Title can be max 55 characters long.
+            <mat-form-field class="w-full">
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="description"
+                placeholder="Enter category description"
+              />
+              <mat-error class="text-error">{{
+                getErrorMessage(description)
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="w-full">
+              <mat-label>Css color</mat-label>
+              <input
+                matInput
+                type="text"
+                formControlName="css_color"
+                placeholder="Enter css color"
+              />
+              <mat-error class="text-error">{{
+                getErrorMessage(css_color)
+              }}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
-      </div>
-    </div>
+      </mat-card-content>
 
-    <!-- Description -->
-    <div>
-      <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
-
-      <div *ngIf="description.invalid && isValidForm === false" class="error">
-        <div *ngIf="description.errors?.['required']">
-          Description is required
-        </div>
-        <div *ngIf="description.errors?.['maxlength']">
-          Description can be max 255 characters long.
-        </div>
-      </div>
-    </div>
-
-    <!-- Css color -->
-    <div>
-      <label for="cssColor">Css color:</label>
-      <input id="cssColor" type="text" formControlName="css_color" />
-
-      <div *ngIf="css_color.invalid && isValidForm === false" class="error">
-        <div *ngIf="css_color.errors?.['required']">Css color is required</div>
-        <div *ngIf="css_color.errors?.['maxlength']">
-          Css color can be max 7 characters long.
-        </div>
-      </div>
-    </div>
-
-    <button type="submit">SAVE</button>
+      <mat-card-actions align="end" class="gap-4">
+        <button mat-flat-button type="submit">Save</button>
+      </mat-card-actions>
+    </mat-card>
   </form>
 </div>

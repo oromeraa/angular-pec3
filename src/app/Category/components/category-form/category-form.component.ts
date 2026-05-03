@@ -32,7 +32,7 @@ export class CategoryFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
     this.categoryId = this.activatedRoute.snapshot.paramMap.get('id');
     this.category = new CategoryDTO('', '', '');
@@ -82,7 +82,7 @@ export class CategoryFormComponent implements OnInit {
     if (this.categoryId) {
       this.isUpdateMode = true;
       this.store.dispatch(
-        CategoriesAction.getCategoryById({ categoryId: this.categoryId })
+        CategoriesAction.getCategoryById({ categoryId: this.categoryId }),
       );
     } else {
       this.categoryForm.reset();
@@ -98,7 +98,7 @@ export class CategoryFormComponent implements OnInit {
           CategoriesAction.updateCategory({
             categoryId: this.categoryId,
             category: this.category,
-          })
+          }),
         );
       }
     }
@@ -109,7 +109,7 @@ export class CategoryFormComponent implements OnInit {
       this.category.userId = this.userId;
 
       this.store.dispatch(
-        CategoriesAction.createCategory({ category: this.category })
+        CategoriesAction.createCategory({ category: this.category }),
       );
     }
   }
@@ -130,5 +130,48 @@ export class CategoryFormComponent implements OnInit {
     } else {
       this.createCategory();
     }
+  }
+
+  getErrorMessage(formControl: FormControl): string {
+    switch (formControl) {
+      case this.title:
+        return this.getTitleErrorMessage(formControl);
+      case this.description:
+        return this.getDescriptionErrorMessage(formControl);
+      case this.css_color:
+        return this.getCssColorErrorMessage(formControl);
+      default:
+        return '';
+    }
+  }
+
+  getTitleErrorMessage(formControl: FormControl): string {
+    if (formControl.hasError('required')) {
+      return 'Title is required';
+    }
+    if (formControl.hasError('maxlength')) {
+      return 'Title can be max 55 characters long';
+    }
+    return '';
+  }
+
+  getDescriptionErrorMessage(formControl: FormControl): string {
+    if (formControl.hasError('required')) {
+      return 'Description is required';
+    }
+    if (formControl.hasError('maxlength')) {
+      return 'Description can be max 255 characters long';
+    }
+    return '';
+  }
+
+  getCssColorErrorMessage(formControl: FormControl): string {
+    if (formControl.hasError('required')) {
+      return 'CSS color is required';
+    }
+    if (formControl.hasError('maxlength')) {
+      return 'CSS color can be max 7 characters long';
+    }
+    return '';
   }
 }

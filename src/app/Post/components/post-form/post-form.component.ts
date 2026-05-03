@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
@@ -18,6 +18,7 @@ import { PostDTO } from '../../models/post.dto';
   selector: 'app-post-form',
   templateUrl: './post-form.component.html',
   styleUrls: ['./post-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostFormComponent implements OnInit {
   post: PostDTO;
@@ -41,7 +42,7 @@ export class PostFormComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private store: Store<AppState>
+    private store: Store<AppState>,
   ) {
     this.userId = '';
 
@@ -60,7 +61,7 @@ export class PostFormComponent implements OnInit {
 
     this.publication_date = new FormControl(
       formatDate(this.post.publication_date, 'yyyy-MM-dd', 'en'),
-      [Validators.required]
+      [Validators.required],
     );
 
     this.num_likes = new FormControl(this.post.num_likes);
@@ -101,7 +102,7 @@ export class PostFormComponent implements OnInit {
           publication_date: formatDate(
             this.post.publication_date,
             'yyyy-MM-dd',
-            'en'
+            'en',
           ),
           categories: categoriesIds,
           num_likes: this.post.num_likes,
@@ -114,7 +115,7 @@ export class PostFormComponent implements OnInit {
   private loadCategories(): void {
     if (this.userId) {
       this.store.dispatch(
-        CategoriesAction.getCategoriesByUserId({ userId: this.userId })
+        CategoriesAction.getCategoriesByUserId({ userId: this.userId }),
       );
     }
   }
@@ -126,7 +127,7 @@ export class PostFormComponent implements OnInit {
     } else {
       this.postForm.reset();
       this.publication_date.setValue(
-        formatDate(this.post.publication_date, 'yyyy-MM-dd', 'en')
+        formatDate(this.post.publication_date, 'yyyy-MM-dd', 'en'),
       );
     }
   }
@@ -140,7 +141,7 @@ export class PostFormComponent implements OnInit {
           PostsAction.updatePost({
             postId: this.postId,
             post: this.post,
-          })
+          }),
         );
       }
     }
@@ -171,5 +172,54 @@ export class PostFormComponent implements OnInit {
     } else {
       this.createPost();
     }
+  }
+
+  getErrorMessage(control: FormControl): string {
+    switch (control) {
+      case this.title:
+        return this.getTitleErrorMessage();
+      case this.description:
+        return this.getDescriptionErrorMessage();
+      case this.publication_date:
+        return this.getPublicationDateErrorMessage();
+      case this.categories:
+        return this.getCategoriesErrorMessage();
+      default:
+        return '';
+    }
+  }
+
+  getTitleErrorMessage(): string {
+    if (this.title.hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (this.title.hasError('maxlength')) {
+      return 'Title cannot be longer than 55 characters';
+    }
+    return '';
+  }
+
+  getDescriptionErrorMessage(): string {
+    if (this.description.hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (this.description.hasError('maxlength')) {
+      return 'Description cannot be longer than 255 characters';
+    }
+    return '';
+  }
+
+  getPublicationDateErrorMessage(): string {
+    if (this.publication_date.hasError('required')) {
+      return 'You must enter a value';
+    }
+    return '';
+  }
+
+  getCategoriesErrorMessage(): string {
+    if (this.categories.hasError('required')) {
+      return 'You must select at least one category';
+    }
+    return '';
   }
 }
