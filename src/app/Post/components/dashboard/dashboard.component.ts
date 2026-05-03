@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ChartData, ChartType } from 'chart.js';
 import { AppState } from 'src/app/app.reducers';
 import * as PostsAction from '../../actions';
 import { PostDTO } from '../../models/post.dto';
@@ -14,6 +15,12 @@ export class DashboardComponent implements OnInit {
   numLikes: number;
   numDislikes: number;
 
+  doughnutChartType: ChartType = 'doughnut';
+  doughnutChartData: ChartData<'doughnut'> = {
+    labels: ['Likes', 'Dislikes'],
+    datasets: [{ data: [0, 0] }],
+  };
+
   constructor(private store: Store<AppState>) {
     this.posts = new Array<PostDTO>();
     this.numLikes = 0;
@@ -23,10 +30,16 @@ export class DashboardComponent implements OnInit {
       this.posts = posts.posts;
       this.numLikes = 0;
       this.numDislikes = 0;
+
       this.posts.forEach((post) => {
-        this.numLikes = this.numLikes + post.num_likes;
-        this.numDislikes = this.numDislikes + post.num_dislikes;
+        this.numLikes += post.num_likes;
+        this.numDislikes += post.num_dislikes;
       });
+
+      this.doughnutChartData = {
+        labels: ['Likes', 'Dislikes'],
+        datasets: [{ data: [this.numLikes, this.numDislikes] }],
+      };
     });
   }
 

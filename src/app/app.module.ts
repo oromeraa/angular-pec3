@@ -25,6 +25,7 @@ import { UserModule } from './User/user.module';
 import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -60,6 +61,7 @@ import { MatToolbar } from '@angular/material/toolbar';
     },
     provideHttpClient(withInterceptorsFromDi()),
     provideAnimationsAsync(),
+    provideCharts(withDefaultRegisterables()),
   ],
 })
 export class AppModule {}

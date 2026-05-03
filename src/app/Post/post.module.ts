@@ -15,6 +15,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { BaseChartDirective } from 'ng2-charts';
 import { FormatDatePipe } from '../Shared/Pipes/format-date.pipe';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
@@ -51,6 +52,7 @@ import { PostsListComponent } from './components/posts-list/posts-list.component
     MatError,
     MatDatepickerModule,
     MatSelectModule,
+    BaseChartDirective,
   ],
   providers: [provideNativeDateAdapter()],
 })

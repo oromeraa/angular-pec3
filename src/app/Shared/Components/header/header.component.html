@@ -1,13 +1,8 @@
 <mat-toolbar class="!bg-slate-600 !flex !py-4 !w-full !px-32">
-  <button
-    matIconButton
-    class="example-icon"
-    aria-label="Example icon-button with menu icon"
-    (click)="home()"
-  >
-    <span>Blog UOC Project Front</span>
+  <button mat-flat-button matFab extended color="accent" (click)="home()">
+    <mat-icon>home</mat-icon>
+    Blog UOC Project Front
   </button>
-  <span class="example-spacer"></span>
 
   <!-- NO AUTH REQUIRED -->
   <div
